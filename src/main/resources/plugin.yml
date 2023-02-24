@@ -1,0 +1,4 @@
+name: LoupGarou
+version: 1.0
+api-version: 1.19
+main: fr.program.LoupGarouMain
