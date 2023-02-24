@@ -2,6 +2,7 @@
 .idea
 apache-maven-3.6.0
 build
+BuildData
 Bukkit
 CraftBukkit
 gradle
