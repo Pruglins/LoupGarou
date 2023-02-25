@@ -1,5 +1,6 @@
 package fr.program;
 
+import fr.program.cmds.CommancerCMD;
 import fr.program.cmds.DayCMD;
 import fr.program.cmds.NightCMD;
 import fr.program.cmds.PartieCMD;
@@ -34,6 +35,13 @@ public class LoupGarouMain extends JavaPlugin {
                 new PartieCMD(this),
                 "loupgarou.partie",
                 "game"));
+
+        createCommand(new ConstructorCommands(
+                "commencer",
+                "Donne la permission a un rôle d'effectué sa tâche.",
+                new CommancerCMD(this),
+                "loupgarou.start",
+                "start"));
     }
 
     private void createCommand(ConstructorCommands cmd) {

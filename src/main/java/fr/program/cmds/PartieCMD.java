@@ -1,6 +1,7 @@
 package fr.program.cmds;
 
 import fr.program.LoupGarouMain;
+import it.unimi.dsi.fastutil.chars.CharBigArrays;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -80,12 +81,29 @@ public class PartieCMD implements CommandExecutor {
                     plr.sendMessage(ChatColor.WHITE + "[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
                             " Les données sont supprimées.");
                     return true;
+                } else if (p1.equalsIgnoreCase("start") || p1.equalsIgnoreCase("commencer")) {
+                    Bukkit.broadcastMessage(ChatColor.WHITE + "[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            " La partie va commencé ! ");
+
+                    plr.sendMessage(ChatColor.WHITE + "[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            " MJ, vous devez utiliser la commande : "
+                            + ChatColor.DARK_GREEN + "commencer " + ChatColor.GREEN + ChatColor.ITALIC + "role " + ChatColor.RESET + ChatColor.WHITE  + "où role peut être : \n\n" +
+                            ChatColor.YELLOW + "- " + ChatColor.WHITE + "loup \n" +
+                            ChatColor.YELLOW + "- " + ChatColor.WHITE + "pere-loup \n" +
+                            ChatColor.YELLOW + "- " + ChatColor.WHITE + "mechant-loup \n" +
+                            ChatColor.YELLOW + "- " + ChatColor.WHITE + "loup-blanc \n" +
+                            ChatColor.YELLOW + "- " + ChatColor.WHITE + "voyante \n" +
+                            ChatColor.YELLOW + "- " + ChatColor.WHITE + "sorciere \n" +
+                            ChatColor.YELLOW + "- " + ChatColor.WHITE + "ange \n" +
+                            ChatColor.WHITE + "\n\n Ils doivent être dans cette ordre. 15 secondes seront donnés, une fois que se sera fait, ils redormiront."
+                    );
+                    return true;
                 } else {
                     if (args.length > 2) {
                         String possiblePlayer = args[1];
 
                         if (Bukkit.getPlayer(possiblePlayer) == null) {
-                            Bukkit.broadcastMessage(ChatColor.WHITE + "[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            plr.sendMessage(ChatColor.WHITE + "[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
                                     " Le joueur n'est pas connecté.");
                             return false;
                         }
