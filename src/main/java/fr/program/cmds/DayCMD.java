@@ -14,6 +14,7 @@ public class DayCMD implements CommandExecutor {
             Player plr = ((Player) sender).getPlayer();
 
             Bukkit.broadcastMessage(ChatColor.WHITE + "[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" + " Le soleil se lève ! Réveillez-vous.");
+            return true;
         }
         return false;
     }

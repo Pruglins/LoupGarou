@@ -14,6 +14,7 @@ public class NightCMD implements CommandExecutor {
             Player plr = ((Player) sender).getPlayer();
 
             Bukkit.broadcastMessage(ChatColor.WHITE + "[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" + " La nuit tombe ! Prenez garde.");
+            return true;
         }
         return false;
     }
