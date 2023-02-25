@@ -74,3 +74,7 @@ Remettre à 0, redémarrer une partie: `partie reset`
 Donner un rôle à un joueur: `partie role NomDuJoueur Role`
 
 Retirer le rôle à un joueur: `partie role NomDuJoueur retirer`
+
+Commencer la partie: `partie commencer`
+
+Commencer l'intéraction d'un rôle dans la partie : `commencer Role` où role peut être : *loup*,  *pere-loup*, *mechant-loup*, *loup-blanc*, *voyante*, *sorciere* ou *ange*. 
