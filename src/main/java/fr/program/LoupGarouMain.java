@@ -1,9 +1,10 @@
 package fr.program;
 
-import fr.program.cmds.CommancerCMD;
+import fr.program.cmds.CommencerCMD;
 import fr.program.cmds.DayCMD;
 import fr.program.cmds.NightCMD;
 import fr.program.cmds.PartieCMD;
+import fr.program.utility.ConstructorCommands;
 import org.bukkit.craftbukkit.v1_19_R2.CraftServer;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,6 +13,8 @@ public class LoupGarouMain extends JavaPlugin {
     public void onEnable() {
         System.out.println("(PLUGIN) Loup Garou: Starting...");
         //getCommand("night").setExecutor(new NightCMD());
+
+        getServer().getPluginManager().registerEvents(new LoupGarouEvents(this), this);
 
         saveDefaultConfig();
 
@@ -34,14 +37,14 @@ public class LoupGarouMain extends JavaPlugin {
                 "Préparer la partie.",
                 new PartieCMD(this),
                 "loupgarou.partie",
-                "game"));
+                ""));
 
         createCommand(new ConstructorCommands(
                 "commencer",
                 "Donne la permission a un rôle d'effectué sa tâche.",
-                new CommancerCMD(this),
+                new CommencerCMD(this),
                 "loupgarou.start",
-                "start"));
+                ""));
     }
 
     private void createCommand(ConstructorCommands cmd) {
