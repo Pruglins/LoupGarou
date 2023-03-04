@@ -61,7 +61,7 @@ Le père des loups désigne qu'un infecté qu'une fois dans la partie.
 
 ### day, jour
 
-Réveiller le village : `day` ou `jour`
+Réveiller le village : `jour` ou `day`
 
 ### night, nuit
 
