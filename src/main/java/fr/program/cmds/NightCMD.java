@@ -20,9 +20,7 @@ public class NightCMD implements CommandExecutor {
             PotionEffect blindness = new PotionEffect(PotionEffectType.BLINDNESS, Integer.MAX_VALUE, 3);
 
             for (Player p : Bukkit.getOnlinePlayers()) {
-                if (p.getUniqueId() != plr.getUniqueId()) { // Si l'ID du joueur est différent de celui du MJ.
-                    p.addPotionEffect(blindness);
-                }
+                p.addPotionEffect(blindness);
             }
             return true;
         }
