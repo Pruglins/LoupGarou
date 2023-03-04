@@ -15,3 +15,6 @@ roles:
   villageois-5: None
   villageois-6: None
   villageois-7: None
+
+game:
+  target-loups:
