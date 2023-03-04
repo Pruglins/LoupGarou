@@ -1,4 +1,4 @@
-package fr.program;
+package fr.program.utility;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -18,7 +18,6 @@ public class ConstructorCommands extends Command {
     }
     @Override
     public boolean execute(CommandSender sender, String commandLabel, String[] args) {
-
         return executor.onCommand(sender, this, commandLabel, args);
     }
 }
