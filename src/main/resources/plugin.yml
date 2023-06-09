@@ -1,0 +1,13 @@
+name: LoupGarou
+version: 1.0
+api-version: 1.19
+main: fr.program.Main
+commands:
+  partie:
+    description: Gérer la partie du jeu Loup Garou
+    permission: loupgarou.admin.game
+    aliases:
+      - game
+  roles:
+    description: Gérer les rôles des joueurs, avoir des informations sur les rôles
+    permission: loupgarou.admin.roles

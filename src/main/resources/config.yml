@@ -1,0 +1,46 @@
+compos_jeu:
+  roles: # 18 rôles
+    - "Loup Garou"  # Commentaire pour le rôle "Loup Garou"
+    - "Infect Père des loups"  # Commentaire pour le rôle "Infect Père des loups"
+    - "Grand Méchant loup"  # Commentaire pour le rôle "Grand Méchant loup"
+    - "Villageois"  # Commentaire pour le rôle "Villageois"
+    - "Cupidon"  # Commentaire pour le rôle "Cupidon"
+    - "Voyante"  # Commentaire pour le rôle "Voyante"
+    - "Soeurs"  # Commentaire pour le rôle "Sœurs"
+    - "Petite fille"  # Commentaire pour le rôle "Petite fille"
+    - "Renard"  # Commentaire pour le rôle "Renard"
+    - "Chevalier à l'épée rouillée"  # Commentaire pour le rôle "Chevalier à l'épée rouillée"
+    - "Ancien"  # Commentaire pour le rôle "Ancien"
+    - "Sorcière"  # Commentaire pour le rôle "Sorcière"
+    - "Montreur d'ours"  # Commentaire pour le rôle "Montreur d'ours"
+    - "Chasseur"  # Commentaire pour le rôle "Chasseur"
+    - "Enfant sauvage"  # Commentaire pour le rôle "Enfant sauvage"
+    - "Chien Loup"  # Commentaire pour le rôle "Chien Loup"
+    - "Loup Garou Blanc"  # Commentaire pour le rôle "Loup Garou Blanc"
+    - "Joueur de flûte"  # Commentaire pour le rôle "Joueur de flûte"
+    - "Ange"  # Commentaire pour le rôle "Ange"
+
+  nb_roles: # 18 rôles pour un total de 28 personnes
+    - 3  # Commentaire pour le nombre de rôles "Loup Garou"
+    - 1  # Commentaire pour le nombre de rôles "Infect Père des loups"
+    - 1  # Commentaire pour le nombre de rôles "Grand Méchant loup"
+    - 7  # Commentaire pour le nombre de rôles "Villageois"
+    - 1  # Commentaire pour le nombre de rôles "Cupidon"
+    - 1  # Commentaire pour le nombre de rôles "Voyante"
+    - 2  # Commentaire pour le nombre de rôles "Sœurs"
+    - 1  # Commentaire pour le nombre de rôles "Petite fille"
+    - 1  # Commentaire pour le nombre de rôles "Renard"
+    - 1  # Commentaire pour le nombre de rôles "Chevalier à l'épée rouillée"
+    - 1  # Commentaire pour le nombre de rôles "Ancien"
+    - 1  # Commentaire pour le nombre de rôles "Sorcière"
+    - 1  # Commentaire pour le nombre de rôles "Montreur d'ours"
+    - 1  # Commentaire pour le nombre de rôles "Chasseur"
+    - 1  # Commentaire pour le nombre de rôles "Enfant sauvage"
+    - 1  # Commentaire pour le nombre de rôles "Chien Loup"
+    - 1  # Commentaire pour le nombre de rôles "Loup Garou Blanc"
+    - 1  # Commentaire pour le nombre de rôles "Joueur de flûte"
+    - 1  # Commentaire pour le nombre de rôles "Ange"
+
+partie:
+  joueurs:
+  roles_players: # Format : "Nom_Du_Joueur : Index" où Index est le numéro du rôle, par exemple le 0 serait le Loup Garou simple, le 1 l'Infecte Père des loups, le 3 un Villageois, etc.
