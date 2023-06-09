@@ -8,6 +8,7 @@ gradle
 PortableGit-2.30.0-64-bit
 Spigot
 work
+build
 BuildTools.jar
 BuildTools.log.txt
 gradlew
