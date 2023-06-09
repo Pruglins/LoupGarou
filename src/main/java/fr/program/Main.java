@@ -11,8 +11,6 @@ public class Main extends JavaPlugin {
         System.out.println("[LOUP GAROU] Enabled.");
 
         this.saveDefaultConfig();
-        this.saveResource("compos_jeu.roles", true);
-        this.saveResource("compos_jeu.nb_roles", true);
 
         this.getCommand("partie").setExecutor(new PartieCMD(this));
         this.getCommand("roles").setExecutor(new RolesCMD(this));
