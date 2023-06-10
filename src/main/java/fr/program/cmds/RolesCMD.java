@@ -34,39 +34,39 @@ public class RolesCMD implements CommandExecutor {
         List<Integer> old_amount_per_roles = configPlugin.getIntegerList("compos_jeu.nb_roles");
 
         if (sender instanceof Player player) {
-            if (args.length >= 2) {
+            if (args.length >= 1) {
                 String selection_mode = args[0];
                 if (selection_mode.equals("info")) {
                     String role = args[1];
                     switch (role) {
                         case "Loup-Garou":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Se réveille chaque nuit avec son groupe pour éliminer un membre du village qui ne fait pas parti de sa meute. Le joueur voté meurt au lever du jour"
                             );
                             break;
                         case "Infect-Père-des-Loups":
                         case "Infect-Père-Loups":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Il dévore un membre du village avec ses semblables mais s'il le souhaite il peut décider pour une nuit seulement de rendre la personne voté infecté qui devient un loup garou."
                             );
                             break;
                         case "Grand-Méchant-Loup":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Il dévore un membre du village avec ses semblables mais peut se réveiller une deuxième fois si aucun Loup-Garou, Enfant-Sauvage ou Chien-Loup n'est mort."
                             );
                             break;
                         case "Villageois":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Aucun réel impact dans la partie, il participe seulement au vote pour éliminer un joueur de la partie."
                             );
                             break;
                         case "Cupidon":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Se réveille la première nuit pour rendre amoureux deux joueurs, peu import leur rôle."
                             );
                             break;
                         case "Voyante":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Peut regarder le rôle d'un joueur de son choix, une fois par nuit."
                             );
                             break;
@@ -75,59 +75,59 @@ public class RolesCMD implements CommandExecutor {
                         case "Soeurs":
                         case "Soeur":
                         case "Sœurs":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Se réveillent chaque nuit pour discuter silencieusement des décisions à prendre si elles le souhaitent, ou peuvent tout simplement se voir et dormir directement.."
                             );
                             break;
                         case "Petite-Fille":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Ouvrir les yeux un peu de temps en temps pour entrevoir des actions des joueurs pendant la nuit. Elle n'a pas le droit de se faire passer pour un loup garou."
                             );
                             break;
                         case "Renard":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Désigne un groupe de 3 personnes et sait si un loup garou s'y trouve, sans savoir qui c'est réellement."
                             );
                             break;
                         case "Chevalier-Epée-Rouillée":
                         case "Chevalier-Epee-Rouillee":
                         case "Chevalier-Épée-Rouillée":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "S'il meurt, le premier loup garou qui est a sa gauche meurt suite au blessure de l'épée qui l'a empoisonné."
                             );
                             break;
                         case "Ancien":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Il a une seconde vie lorsqu'il se fait dévorer par un/des Loups-Garou. Si le village décide de le tuer pendant la nuit (par exemple la Sorcière) ou lors d'un vote, ils n'ont plus accès aux pouvoirs."
                             );
                             break;
                         case "Sorcière":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Elle peut donner une potion qui fait survivre une victime des loups garou ou peut tuer quelqu'un de son choix, ou rien faire."
                             );
                             break;
                         case "Montreur-Ours":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Chaque matin, s'il y a un loup garou voisin de ce joueur, il est mis au courant."
                             );
                             break;
                         case "Chasseur":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Lors de sa mort provoqué par les Loups-Garou ou le village, il peut décider d'éliminer quelqu'un."
                             );
                             break;
                         case "Enfant-Sauvage":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Désigne un joueur modèle la première nuit, si ce dernier meurt, l'enfant sauvage devient loup garou pour les prochaines nuits."
                             );
                             break;
                         case "Chien-Loup":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Décide s'il souhaite faire parti des loups ou des membres du village la première nuit."
                             );
                             break;
                         case "Loup-Garou-Blanc":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Il élimine les membres du village avec ces confrères mais une nuit sur deux il doit voter un loup garou, son but est de rester le dernier survivant de la partie."
                             );
                             break;
@@ -135,18 +135,18 @@ public class RolesCMD implements CommandExecutor {
                         case "Flûte":
                         case "Joueur-Flute":
                         case "Flute":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Choisi 2 joueurs chaque nuit et s'il arrive à charmer tout les les joueurs il gagne la partie."
                             );
                             break;
                         case "Ange":
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "S'il est éliminé lors du premier tour, après la première nuit : il gagne la partie !"
                             );
                             break;
 
                         default:
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                                     "Ce rôle est introuvable ! S'il y a pas un simple mot, merci de mettre un '-' entre chaque mot."
                             );
                             break;
@@ -184,12 +184,11 @@ public class RolesCMD implements CommandExecutor {
                         int index_role_t = LoupGarouPlugin_Roles.indexOf(role_t);
                         int current_amount_role = list_to_edit.get(index_role_t);
 
-                        if (index_role_t != -1 && current_amount_role != 1) {
+                        if (index_role_t != -1 && current_amount_role != -1) {
                             if (current_amount_role > 0) {
-                                current_amount_role -= 1;
-                                list_to_edit.set(index_role_t, current_amount_role);
+                                list_to_edit.set(index_role_t, current_amount_role - 1);
                                 configPlugin.set("compos_jeu.nb_roles", list_to_edit);
-                                configPlugin.set("compos_jeu.roles_players." + t.getName(), role_t);
+                                configPlugin.set("partie.roles_players." + t.getName(), role_t);
                                 plugin.saveConfig();
 
                                 player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
