@@ -17,7 +17,7 @@ Attribut à tous les joueurs connectés un rôle de façon aléatoire, tout en r
 
 ### /roles info
 
-La commande ici donne des informations sur le rôle recherché que vous avez donné en argument.
+Cette commande donne des informations sur le rôle que vous avez indiqué en argument.
 
 Par ailleurs, vous **ne devez pas** mettre d'espace, mais des **-** !
 
