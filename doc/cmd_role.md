@@ -44,13 +44,13 @@ Voici ce que vous pouvez mettre comme *argument* :
 - Ange
 
 
-Exemple: ``/roles info Ange``
+Exemple : ``/roles info Ange``
 
 Ici, vous recevrez comme message : "S'il est éliminé lors du premier tour, après la première nuit : il gagne la partie !"
 
 ### /roles set
 
-La commande ici donne des informations sur le rôle recherché que vous avez donné en argument.
+Cette commande donne des informations sur le rôle que vous avez indiqué en *argument*.
 
 Par ailleurs, le premier argument est **le nom du joueur** puis on a l'index du rôle, voici les arguments que vous pouvez mettre (en fonction du rôle) :
 
