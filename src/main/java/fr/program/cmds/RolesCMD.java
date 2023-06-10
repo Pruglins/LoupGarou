@@ -13,17 +13,25 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class RolesCMD implements CommandExecutor {
-
     private final Main plugin;
     public RolesCMD(Main main) {
         this.plugin = main;
     }
 
+    private String returnRandomRole(List<String> list) {
+        Random random = new Random();
+        return list.get(random.nextInt(list.size()));
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         FileConfiguration configPlugin = plugin.getConfig();
+
+        List<String> LoupGarouPlugin_Roles = configPlugin.getStringList("compos_jeu.roles");
+        List<Integer> old_amount_per_roles = configPlugin.getIntegerList("compos_jeu.nb_roles");
 
         if (sender instanceof Player player) {
             if (args.length >= 2) {
@@ -143,7 +151,8 @@ public class RolesCMD implements CommandExecutor {
                             );
                             break;
                     }
-                } else if (selection_mode.equals("set")) {
+                }
+                else if (selection_mode.equals("set")) {
                     Player p = Bukkit.getPlayer(args[1]);
 
                     if (p!=null && args[2] != null) {
@@ -169,7 +178,33 @@ public class RolesCMD implements CommandExecutor {
                         );
                     }
                 } else if (selection_mode.equals("random")) {
+                    List<Integer> list_to_edit = old_amount_per_roles;
+                    for (Player t : Bukkit.getOnlinePlayers()) {
+                        String role_t = returnRandomRole(LoupGarouPlugin_Roles);
+                        int index_role_t = LoupGarouPlugin_Roles.indexOf(role_t);
+                        int current_amount_role = list_to_edit.get(index_role_t);
 
+                        if (index_role_t != -1 && current_amount_role != 1) {
+                            if (current_amount_role > 0) {
+                                current_amount_role -= 1;
+                                list_to_edit.set(index_role_t, current_amount_role);
+                                configPlugin.set("compos_jeu.nb_roles", list_to_edit);
+                                configPlugin.set("compos_jeu.roles_players." + t.getName(), role_t);
+                                plugin.saveConfig();
+
+                                player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                                        "Tu as le rôle " + ChatColor.RED + role_t + ChatColor.WHITE + "."
+                                );
+                            }
+                        } else {
+                            Bukkit.broadcastMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                                    "Erreur d'attribution du rôle au joueur " + ChatColor.YELLOW + t.getName()
+                            );
+                        }
+                    }
+
+                    configPlugin.set("compos_jeu.nb_roles", old_amount_per_roles);
+                    plugin.saveConfig();
                 }
             } else {
                 player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
