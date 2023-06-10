@@ -1,5 +1,5 @@
 compos_jeu:
-  roles: # 18 rôles
+  roles: # 19 rôles
     - "Loup Garou"  # Commentaire pour le rôle "Loup Garou"
     - "Infect Père des loups"  # Commentaire pour le rôle "Infect Père des loups"
     - "Grand Méchant loup"  # Commentaire pour le rôle "Grand Méchant loup"
@@ -20,7 +20,7 @@ compos_jeu:
     - "Joueur de flûte"  # Commentaire pour le rôle "Joueur de flûte"
     - "Ange"  # Commentaire pour le rôle "Ange"
 
-  nb_roles: # 18 rôles pour un total de 28 personnes
+  nb_roles: # 19 rôles pour un total de 28 personnes
     - 3  # Commentaire pour le nombre de rôles "Loup Garou"
     - 1  # Commentaire pour le nombre de rôles "Infect Père des loups"
     - 1  # Commentaire pour le nombre de rôles "Grand Méchant loup"
