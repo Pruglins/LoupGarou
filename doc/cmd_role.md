@@ -52,27 +52,31 @@ Ici, vous recevrez comme message : "S'il est éliminé lors du premier tour, apr
 
 Cette commande donne des informations sur le rôle que vous avez indiqué en *argument*.
 
-Par ailleurs, le premier argument est **le nom du joueur** puis on a l'index du rôle, voici les arguments que vous pouvez mettre (en fonction du rôle) :
+Par ailleurs, le premier *argument* est **le nom du joueur**, suivi de l'index du rôle.
+
+Voici les *arguments* que vous pouvez mettre (en fonction du rôle) :
+
 
 - Loup-Garou -> ``1``
-- Infect Père des loups -> ``2``
-- Grand Méchant loup -> ``3``
+- Infect Père des Loups -> ``2``
+- Grand Méchant Loup -> ``3``
 - Villageois -> ``4``
 - Cupidon -> ``5``
 - Voyante -> ``6``
 - Soeurs -> ``7``
-- Petite fille -> ``8``
+- Petite Fille -> ``8``
 - Renard -> ``9``
-- Chevalier à l'épée rouillée -> ``10``
+- Chevalier à l'Épée Rouillée -> ``10``
 - Ancien -> ``11`` 
 - Sorcière -> ``12``
-- Montreur d'ours -> ``13``
+- Montreur d'Ours -> ``13``
 - Chasseur -> ``14``
-- L'enfant sauvage -> ``15``
+- L'enfant Sauvage -> ``15``
 - Chien Loup -> ``16``
 - Loup Garou Blanc -> ``17``
-- Joueur de flûte  -> ``18``
+- Joueur de Flûte  -> ``18``
 - Ange -> ``19``
+
 
 Exemple: ``/roles set Program132 1``
 
