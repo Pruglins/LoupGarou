@@ -46,7 +46,7 @@ Voici ce que vous pouvez mettre comme *argument* :
 
 Exemple: ``/roles info Ange``
 
-Ici, vous recevrez comme message : "S'il est éliminé lors du premier tour après la première nuit, il gagne la partie"
+Ici, vous recevrez comme message : "S'il est éliminé lors du premier tour, après la première nuit : il gagne la partie !"
 
 ### /roles set
 
