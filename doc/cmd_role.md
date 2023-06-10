@@ -24,8 +24,8 @@ Par ailleurs, vous **ne devez pas** mettre d'espace mais des tirets ("-") !
 Voici ce que vous pouvez mettre comme *argument* : 
 
 - Loup-Garou
-- Infect-Père-loups
-- Grand-Méchant-loup 
+- Infect-Père-des-Loups
+- Grand-Méchant-Loup 
 - Villageois
 - Cupidon
 - Voyante
