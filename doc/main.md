@@ -14,7 +14,7 @@ Cela peut être un *.exe* pour une application, un jeu par exemple. Ici, ce sera
 
 Allez dans la catégorie [releases](https://github.com/Pruglins/LoupGarou/releases) du projet, puis télécharger le fichier *.jar*. 
 Ensuite, glissez-le dans le dossier *plugins* de votre serveur. 
-Lancez votre serveur, et voilà :)! 
+Lancez votre serveur, et voilà ! :) 
 
 
 ## Ressources
