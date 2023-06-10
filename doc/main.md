@@ -2,7 +2,7 @@
 
 Le plugin est actuellement disponible en 1.19.3.
 
-Dans ce document, vous trouverez plusieurs informations utiles pour vous aider lors de votre première partie de Loup Garou !
+Dans ce document, vous trouverez plusieurs informations utiles pour vous aider lors de votre première partie de Loup-Garou !
 
 Je tiens à préciser qu'à la base, il n'est pas fait pour jouer sur un gros serveur, mais seulement entre amis :) !
 

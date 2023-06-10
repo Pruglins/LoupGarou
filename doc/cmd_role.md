@@ -10,7 +10,7 @@ Chaque fois que vous voyez ``[ ]``, cela signifie que vous devez préciser un *a
 
 Récupère les informations sur un rôle : ``/roles info [nom du rôle]``
 
-Met à jour le rôle d'un joueur (permet de dépasser le nombre maximum de joueur(s) par rôle normalement atteignable ; par exemple, il est possible d'avoir 5 loups garou au lieu de 3) 
+Met à jour le rôle d'un joueur (permet de dépasser le nombre maximum de joueur(s) par rôle normalement atteignable ; par exemple, il est possible d'avoir 5 loups-garous au lieu de 3) 
 manuellement : ``/roles set [jouuer] [index du rôle]``
 
 Attribut à tous les joueurs connectés un rôle de façon aléatoire, tout en respectant le nombre maximum de joueur(s) par rôle : ``/roles random``
@@ -21,7 +21,7 @@ Cette commande donne des informations sur le rôle que vous avez indiqué en *ar
 
 Par ailleurs, vous **ne devez pas** mettre d'espace mais des tirets ("-") !
 
-Voici ce que vous pouvez mettre comme argument : 
+Voici ce que vous pouvez mettre comme *argument* : 
 
 - Loup-Garou
 - Infect-Père-loups
@@ -54,7 +54,7 @@ La commande ici donne des informations sur le rôle recherché que vous avez don
 
 Par ailleurs, le premier argument est **le nom du joueur** puis on a l'index du rôle, voici les arguments que vous pouvez mettre (en fonction du rôle) :
 
-- Loup Garou -> ``1``
+- Loup-Garou -> ``1``
 - Infect Père des loups -> ``2``
 - Grand Méchant loup -> ``3``
 - Villageois -> ``4``
