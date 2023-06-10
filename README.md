@@ -41,7 +41,3 @@ Pour comprendre les différentes commandes, je vous conseille de lire la [docume
 - Loup Garou Blanc (1)
 - Joueur de flûte (1)
 - Ange (1)
-
-## Liens
-
-- [Documentation](doc/main.md).
