@@ -29,10 +29,10 @@ Voici ce que vous pouvez mettre comme *argument* :
 - Villageois
 - Cupidon
 - Voyante
-- Soeurs
+- Soeurs ou Sœurs
 - Petite-Fille
 - Renard
-- Chevalier-Epée-Rouillée
+- Chevalier-Epée-Rouillée ou Chevalier-Épée-Rouillée
 - Ancien
 - Sorcière
 - Montreur-Ours
