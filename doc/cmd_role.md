@@ -63,7 +63,7 @@ Voici les *arguments* que vous pouvez mettre (en fonction du rôle) :
 - Villageois -> ``4``
 - Cupidon -> ``5``
 - Voyante -> ``6``
-- Soeurs -> ``7``
+- Sœurs -> ``7``
 - Petite Fille -> ``8``
 - Renard -> ``9``
 - Chevalier à l'Épée Rouillée -> ``10``
@@ -71,7 +71,7 @@ Voici les *arguments* que vous pouvez mettre (en fonction du rôle) :
 - Sorcière -> ``12``
 - Montreur d'Ours -> ``13``
 - Chasseur -> ``14``
-- L'enfant Sauvage -> ``15``
+- Enfant Sauvage -> ``15``
 - Chien Loup -> ``16``
 - Loup Garou Blanc -> ``17``
 - Joueur de Flûte  -> ``18``
