@@ -133,7 +133,7 @@ public class RolesCMD implements CommandExecutor {
                             break;
                         case "Ange":
                             player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
-                                    "S'il est éliminé lors du premier tour après la première nuit, il gagne la partie."
+                                    "S'il est éliminé lors du premier tour, après la première nuit : il gagne la partie !"
                             );
                             break;
 
