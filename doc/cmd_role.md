@@ -10,7 +10,7 @@ Chaque fois que vous voyez ``[ ]``, cela signifie que vous devez préciser un *a
 
 Récupérez les informations sur un rôle : ``/roles info [nom du rôle]``
 
-Mettez à jour le rôle d'un joueur (cela permet de dépasser le nombre maximum de joueurs par rôle normalement attribué, par exemple, il est possible d'avoir 5 Loup Garou au lieu de 3) 
+Mettez à jour le rôle d'un joueur (cela permet de dépasser le nombre maximum de joueurs par rôle normalement envisageable, par exemple, il est possible d'avoir 5 Loup Garou au lieu de 3) 
 manuellement : ``/roles set [jouuer] [index du rôle]``
 
 Attribut à tous les joueurs connecté un rôle de façon aléatoire tout en respectant le nombre maximum de joueurs par rôle : ``/roles random``
