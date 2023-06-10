@@ -72,12 +72,12 @@ Voici les *arguments* que vous pouvez mettre (en fonction du rôle) :
 - Montreur d'Ours -> ``13``
 - Chasseur -> ``14``
 - Enfant Sauvage -> ``15``
-- Chien Loup -> ``16``
-- Loup Garou Blanc -> ``17``
+- Chien-Loup -> ``16``
+- Loup-Garou Blanc -> ``17``
 - Joueur de Flûte  -> ``18``
 - Ange -> ``19``
 
 
-Exemple: ``/roles set Program132 1``
+Exemple : ``/roles set Program132 1``
 
-Ici le joueur Program132 aura le rôle Loup Garou.
+Ici, le joueur Program132 aura le rôle "Loup-Garou".
