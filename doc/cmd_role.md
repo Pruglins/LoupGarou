@@ -80,4 +80,4 @@ Voici les *arguments* que vous pouvez mettre (en fonction du rôle) :
 
 Exemple : ``/roles set Program132 1``
 
-Ici, le joueur Program132 aura le rôle "Loup-Garou".
+Ici, le joueur Program132 aura le rôle *Loup-Garou*.
