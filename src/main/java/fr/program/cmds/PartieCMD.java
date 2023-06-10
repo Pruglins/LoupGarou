@@ -56,8 +56,10 @@ public class PartieCMD implements CommandExecutor {
                     }.runTaskTimer(plugin, 0, 20*1); // 1s -> 20ticks
 
                     List<String> GameCurrent_Players = plugin.getConfig().getStringList("partie.joueurs");
-                    int amount_of_wolf = configPlugin.getIntegerList("compos_jeu.nb_roles").get(0);
-
+                    String amount_of_wolf = configPlugin.getString("partie.nb_total_role.Loup Garou");
+                    System.out.println("\n");
+                    System.out.println(amount_of_wolf);
+                    System.out.println("\n");
                     for (String p_name : GameCurrent_Players) {
                         Player p = Bukkit.getPlayer(p_name);
                         if (p != null) {
@@ -125,6 +127,7 @@ public class PartieCMD implements CommandExecutor {
         config.set("compos_jeu.nb_roles", getDefaultRoleNumbers());
         config.set("partie.joueurs", getDefaultPlayers());
         config.set("partie.roles_players", null);
+        config.set("partie.nb_total_role", null);
         plugin.saveConfig();
     }
 
