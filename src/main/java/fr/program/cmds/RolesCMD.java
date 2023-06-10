@@ -131,7 +131,7 @@ public class RolesCMD implements CommandExecutor {
                             break;
                         case "Ange":
                             player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
-                                    "S'il est éliminé lors du premier tour, il gagne la partie."
+                                    "S'il est éliminé lors du premier tour après la première nuit, il gagne la partie."
                             );
                             break;
 
@@ -141,12 +141,40 @@ public class RolesCMD implements CommandExecutor {
                             );
                             break;
                     }
+                } else if (selection_mode.equals("set")) {
+                    Player p = Bukkit.getPlayer(args[1]);
+
+                    if (p!=null && args[2] != null) {
+                        int index = Integer.parseInt(args[2]);
+                        if (index >= 0 && index <= 19) {
+                            if (index == 0) {
+                                configPlugin.set("partie.roles_players." + p.getName(), null);
+                                plugin.saveConfig();
+                            } else {
+                                configPlugin.set("partie.roles_players." + p.getName(), index);
+                                plugin.saveConfig();
+                            }
+                        } else {
+                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                                    "Il n'y a pas plus de 19 rôles !"
+                            );
+                        }
+                    } else {
+                        player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                                "Merci de remplir les arguments : " + ChatColor.RED + "/set" + ChatColor.DARK_GREEN + "[player] " + "[index du rôle]" + ChatColor.WHITE + "\n" +
+                                "Exemple: " + ChatColor.YELLOW + "/set Program132 1" + ChatColor.WHITE + " où 1 est le premier rôle ici, Loup-Garou." + "\n" +
+                                "Pour savoir \"l'indexe du rôle\" vous pouvez regarder la documentation du plugin : " + ChatColor.DARK_BLUE + "github.com/Pruglins/LoupGarou"
+                        );
+                    }
+                } else if (selection_mode.equals("random")) {
+
                 }
             } else {
                 player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
                         "Merci de donner un de ces argument: " +
                         "- " + ChatColor.YELLOW + "info [role]" + ChatColor.WHITE + " : donne les informations un rôle" +
-                        "- " + ChatColor.YELLOW + "set [player]" + ChatColor.WHITE + " : met à jour le role d'un joueur"
+                        "- " + ChatColor.YELLOW + "set [player] [index]" + ChatColor.WHITE + " : met à jour le role d'un joueur, si vous donnez 0 en index cela le retirera du jeu" +
+                        "- " + ChatColor.YELLOW + "random" + ChatColor.WHITE + " : met à jour le role de chaque joueur connecté aléatoirement en respectant le nombre maximum de catégorie de rôle (3 Loup-Garou et non 5 par exemple)"
                 );
             }
         }
