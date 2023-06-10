@@ -2,15 +2,15 @@
 
 Format: ``/roles [info/set/random] [role/player ?] [index ?]``
 
-## Arguments 
+## *Arguments*
 
-Chaque fois que vous voyez ``[ ]`` cela signifie que vous devez préciser un argument.
+Chaque fois que vous voyez ``[ ]``, cela signifie que vous devez préciser un *argument*.
 
 ## Contexte
 
-Récupérer les informations sur un rôle : ``/roles info [nom du rôle]``
+Récupérez les informations sur un rôle : ``/roles info [nom du rôle]``
 
-Mettre à un jour le rôle d'un joueur (force le nombre maximum de joueurs par rôle, par exemple, il est possible d'avoir 3 Loup Garou au lieu de 5) 
+Mettez à jour le rôle d'un joueur (force le nombre maximum de joueurs par rôle, par exemple, il est possible d'avoir 5 Loup Garou au lieu de 3) 
 manuellement : ``/roles set [jouuer] [index du rôle]``
 
 Attribut à tous les joueurs connecté un rôle de façon aléatoire tout en respectant le nombre maximum de joueurs par rôle : ``/roles random``
