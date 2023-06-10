@@ -189,6 +189,10 @@ public class RolesCMD implements CommandExecutor {
                                 list_to_edit.set(index_role_t, current_amount_role - 1);
                                 configPlugin.set("compos_jeu.nb_roles", list_to_edit);
                                 configPlugin.set("partie.roles_players." + t.getName(), role_t);
+                                configPlugin.set(
+                                        "partie.nb_total_role." + role_t,
+                                        configPlugin.getInt(("partie.nb_total_role." + role_t) + 1)
+                                );
                                 plugin.saveConfig();
 
                                 player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
