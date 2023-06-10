@@ -66,6 +66,7 @@ public class RolesCMD implements CommandExecutor {
                         case "Deux-Soeurs":
                         case "Soeurs":
                         case "Soeur":
+                        case "Sœurs":
                             player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
                                     "Se réveillent chaque nuit pour discuter silencieusement des décisions à prendre si elles le souhaitent, ou peuvent tout simplement se voir et dormir directement.."
                             );
@@ -82,6 +83,7 @@ public class RolesCMD implements CommandExecutor {
                             break;
                         case "Chevalier-Epée-Rouillée":
                         case "Chevalier-Epee-Rouillee":
+                        case "Chevalier-Épée-Rouillée":
                             player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
                                     "S'il meurt, le premier loup garou qui est a sa gauche meurt suite au blessure de l'épée qui l'a empoisonné."
                             );
