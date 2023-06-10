@@ -19,7 +19,7 @@ Lancez votre serveur, et voilà ! :)
 
 ## Ressources
 
-Dans cette catégorie, vous trouverez les listes des commandes et ce qu'elles font en fonction des arguments que vous lui donnez !
+Dans cette catégorie, vous trouverez les listes des commandes et ce qu'elles font en fonction des *arguments* que vous lui donnez !
 
 - [La commande /partie]()
 - [La commande /roles](cmd_role.md)
