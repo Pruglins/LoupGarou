@@ -1,8 +1,7 @@
 package fr.program.cmds;
 
 import fr.program.Main;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,6 +9,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -37,16 +37,34 @@ public class PartieCMD implements CommandExecutor {
                             "La partie va commencer !"
                     );
 
-                    List<String> currentList = plugin.getConfig().getStringList("partie.joueurs");
-                    for (String p_name : currentList) {
+                    new BukkitRunnable() {
+
+                        int i = 3;
+                        @Override
+                        public void run() {
+                            for (Player p : Bukkit.getOnlinePlayers()) {
+                                p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+                            }
+                            Bukkit.broadcastMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                                    "La partie commence dans " + ChatColor.GREEN + i
+                            );
+                            if (i == 0) {
+                                this.cancel();
+                            }
+                            i--;
+                        }
+                    }.runTaskTimer(plugin, 0, 20*1); // 1s -> 20ticks
+
+                    List<String> GameCurrent_Players = plugin.getConfig().getStringList("partie.joueurs");
+                    int amount_of_wolf = configPlugin.getIntegerList("compos_jeu.nb_roles").get(0);
+
+                    for (String p_name : GameCurrent_Players) {
                         Player p = Bukkit.getPlayer(p_name);
                         if (p != null) {
                             PotionEffect effect = new PotionEffect(PotionEffectType.BLINDNESS, Integer.MAX_VALUE, 10); // 20ticks -> 1s, 5min -> 20*300
                             p.addPotionEffect(effect);
                         }
                     }
-
-
 
                     return true;
                 } else if (selection_mode.equals("joueur") || selection_mode.equals("joueurs") || selection_mode.equals("player") || selection_mode.equals("players")) {
@@ -106,6 +124,8 @@ public class PartieCMD implements CommandExecutor {
         config.set("compos_jeu.roles", getDefaultRoles());
         config.set("compos_jeu.nb_roles", getDefaultRoleNumbers());
         config.set("partie.joueurs", getDefaultPlayers());
+        config.set("partie.roles_players", null);
+        plugin.saveConfig();
     }
 
     private List<String> getDefaultRoles() {
