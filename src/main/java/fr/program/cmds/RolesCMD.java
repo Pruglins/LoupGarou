@@ -179,6 +179,7 @@ public class RolesCMD implements CommandExecutor {
                     }
                 } else if (selection_mode.equals("random")) {
                     List<Integer> list_to_edit = old_amount_per_roles;
+                    List<String> current_amount_player =  configPlugin.getStringList("partie.joueurs");
                     for (Player t : Bukkit.getOnlinePlayers()) {
                         String role_t = returnRandomRole(LoupGarouPlugin_Roles);
                         int index_role_t = LoupGarouPlugin_Roles.indexOf(role_t);
@@ -187,6 +188,8 @@ public class RolesCMD implements CommandExecutor {
                         if (index_role_t != -1 && current_amount_role != -1) {
                             if (current_amount_role > 0) {
                                 list_to_edit.set(index_role_t, current_amount_role - 1);
+                                current_amount_player.add(t.getName());
+                                configPlugin.set("partie.joueurs", current_amount_player);
                                 configPlugin.set("compos_jeu.nb_roles", list_to_edit);
                                 configPlugin.set("partie.roles_players." + t.getName(), role_t);
                                 plugin.saveConfig();
