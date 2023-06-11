@@ -42,6 +42,7 @@ compos_jeu:
     - 1  # Commentaire pour le nombre de rôles "Ange"
 
 partie:
+  nuit: 1
   nb_total_role: # Format: "ROLE : 1", ici par exemple on aura 3 Loups-Garous ainsi on a "
   joueurs:
   roles_players: # Format : "Nom_Du_Joueur : Index" où Index est le numéro du rôle, par exemple le 0 serait le Loup Garou simple, le 1 l'Infecte Père des loups, le 3 un Villageois, etc.
