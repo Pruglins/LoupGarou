@@ -26,6 +26,18 @@ public class RolesCMD implements CommandExecutor {
         return list.get(random.nextInt(list.size()));
     }
 
+    private int safeParseInt(String value) {
+        if (value == null || value.isEmpty()) {
+            return 0;
+        }
+
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         FileConfiguration configPlugin = plugin.getConfig();
@@ -156,15 +168,30 @@ public class RolesCMD implements CommandExecutor {
                     Player p = Bukkit.getPlayer(args[1]);
 
                     if (p!=null && args[2] != null) {
-                        int index = Integer.parseInt(args[2]);
+                        int index = safeParseInt(args[2]);
                         if (index >= 0 && index <= 19) {
+                            List<String> current_amount_player =  configPlugin.getStringList("partie.joueurs");
+                            String role = LoupGarouPlugin_Roles.get(index-1);
                             if (index == 0) {
                                 configPlugin.set("partie.roles_players." + p.getName(), null);
                                 plugin.saveConfig();
                             } else {
-                                configPlugin.set("partie.roles_players." + p.getName(), index);
+                                configPlugin.set("partie.roles_players." + p.getName(), role);
                                 plugin.saveConfig();
                             }
+
+                            if (configPlugin.getInt("partie.nb_total_role." + role) == 0) {
+                                configPlugin.set( "partie.nb_total_role." + role, 1);
+                                plugin.saveConfig();
+                            } else {
+                                int n = configPlugin.getInt("partie.nb_total_role." + role);
+                                configPlugin.set("partie.nb_total_role." + role, n + 1);
+                                plugin.saveConfig();
+                            }
+
+                            current_amount_player.add(p.getName());
+                            configPlugin.set("partie.joueurs", current_amount_player);
+                            plugin.saveConfig();
                         } else {
                             player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
                                     "Il n'y a pas plus de 19 rôles !"
