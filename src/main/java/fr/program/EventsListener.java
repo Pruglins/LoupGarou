@@ -29,7 +29,7 @@ public class EventsListener implements Listener {
         String role_player = config.getString("partie.joueurs." + p.getName());
 
         if (currentGameRole.equals("Cupidon") && role_player.equals("Cupidon")) {
-            Cupidon.cupidon_interaction(inv, event, p, config);
+            Cupidon.cupidon_interaction(inv, event, p, config, plugin);
         }
     }
 }
