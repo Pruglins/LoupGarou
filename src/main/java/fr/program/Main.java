@@ -14,6 +14,8 @@ public class Main extends JavaPlugin {
 
         this.getCommand("partie").setExecutor(new PartieCMD(this));
         this.getCommand("roles").setExecutor(new RolesCMD(this));
+
+        this.getServer().getPluginManager().registerEvents(new EventsListener(this), this);
     }
 
     @Override
