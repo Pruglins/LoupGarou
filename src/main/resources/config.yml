@@ -42,6 +42,9 @@ compos_jeu:
     - 1  # Commentaire pour le nombre de rôles "Ange"
 
 partie:
+  cupidon-1:
+  cupidon-2:
+  current_role:
   nuit: 1
   nb_total_role: # Format: "ROLE : 1", ici par exemple on aura 3 Loups-Garous ainsi on a "
   joueurs:
