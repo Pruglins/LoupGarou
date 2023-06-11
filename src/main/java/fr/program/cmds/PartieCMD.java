@@ -37,6 +37,9 @@ public class PartieCMD implements CommandExecutor {
         }
     }
 
+    private void giveDelay() {
+        new BukkitRunnable() { @Override public void run() { /*Waiting*/} }.runTaskLater(plugin, 20 * 30); // 30s -> 20 * 30
+    }
     private int getAmount_Mechant(FileConfiguration config) {
         String amount_of_wolf = config.getString("partie.nb_total_role.Loup Garou");
         String amount_of_mechant_loup = config.getString("partie.nb_total_role.Grand Méchant loup");
@@ -107,6 +110,8 @@ public class PartieCMD implements CommandExecutor {
             inv.addItem(head_p);
         }
 
+        cupidon.openInventory(inv);
+
         new BukkitRunnable() {
             int i = 20;
             @Override
@@ -118,8 +123,6 @@ public class PartieCMD implements CommandExecutor {
                 i--;
             }
         }.runTaskTimer(plugin, 0, 20);
-
-        cupidon.openInventory(inv);
     }
 
     private void startNight(FileConfiguration config) {
@@ -136,8 +139,9 @@ public class PartieCMD implements CommandExecutor {
                     UI_Cupidon(p);
                     config.set("partie.current_role", "Cupidon");
                 }
-
-                new BukkitRunnable() { @Override public void run() { /*Waiting*/} }.runTaskLater(plugin, 20 * 30); // 30s -> 20 * 30
+                Bukkit.broadcastMessage("DEBUG DELAY: 1");
+                giveDelay();
+                Bukkit.broadcastMessage("DEBUG DELAY: 2");
             }
         }
     }
