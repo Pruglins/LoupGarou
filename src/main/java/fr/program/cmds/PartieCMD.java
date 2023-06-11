@@ -73,6 +73,21 @@ public class PartieCMD implements CommandExecutor {
                 ;
     }
 
+    private void UI_Cupidon(Player cupidon) {
+        Inventory inv = Bukkit.createInventory(null, 9, "Cupidon");
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            ItemStack head_p = new ItemStack(Material.PLAYER_HEAD, 1);
+            SkullMeta head_meta = (SkullMeta) head_p.getItemMeta();
+            head_meta.setDisplayName(p.getName());
+            head_meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            head_meta.setOwningPlayer(Bukkit.getOfflinePlayer(p.getUniqueId()));
+            head_p.setItemMeta(head_meta);
+            inv.addItem(head_p);
+        }
+
+        cupidon.openInventory(inv);
+    }
+
     private void vote_eliminatePossibleLoupGarou() {
         Inventory inv = Bukkit.createInventory(null, 45, "Vote : Eliminer un joueur");
 
@@ -111,9 +126,28 @@ public class PartieCMD implements CommandExecutor {
                 + getAmount_Gentils(config) + ChatColor.WHITE + " Villageois."
         );
 
-        vote_eliminatePossibleLoupGarou();
+        startNight(config);
 
         return true; // Fin de la partie
+    }
+
+    private void startNight(FileConfiguration config) {
+        if (config.getInt("partie.nuit") == 1) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                String role = config.getString("partie.roles_players." + p.getName());
+                if (role.equals("Cupidon")) {
+                    Bukkit.broadcastMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
+                            "Cupidon se réveille !"
+                    );
+                    p.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
+                            "Vous avez 20 secondes pour effectuer votre action : mettre en couple deux personnes, si l'une d'elle meurt l'autre meurt de chagrin également."
+                    );
+                    UI_Cupidon(p);
+                }
+
+                new BukkitRunnable() { @Override public void run() { /*Waiting*/} }.runTaskLater(plugin, 20 * 30); // 30s -> 20 * 30
+            }
+        }
     }
 
     @Override
@@ -168,29 +202,13 @@ public class PartieCMD implements CommandExecutor {
         return false;
     }
 
-    private boolean managePlayer(String plr_name, String mode) {
-        Player target = Bukkit.getPlayer(plr_name);
-        if (target != null) {
-            List<String> currentList = plugin.getConfig().getStringList("partie.joueurs");
-            if (mode.equals("add")) {
-                currentList.add(target.getName());
-                plugin.getConfig().set("partie.joueurs", currentList);
-                plugin.saveConfig();
-            } else if (mode.equals("remove")) {
-                currentList.remove(target.getName());
-                plugin.getConfig().set("partie.joueurs", currentList);
-                plugin.saveConfig();
-            }
-        }
-        return false;
-    }
-
     private void reloadConfig(FileConfiguration config) {
         config.set("compos_jeu.roles", getDefaultRoles());
         config.set("compos_jeu.nb_roles", getDefaultRoleNumbers());
         config.set("partie.joueurs", getDefaultPlayers());
         config.set("partie.roles_players", null);
         config.set("partie.nb_total_role", null);
+        config.set("partie.nuit", 1);
         plugin.saveConfig();
     }
 
