@@ -111,8 +111,9 @@ public class PartieCMD implements CommandExecutor {
             int i = 20;
             @Override
             public void run() {
+                cupidon.setExp(i);
                 if (i == 1) {
-                    cupidon.setExp(i);
+                    this.cancel();
                 }
                 i--;
             }
