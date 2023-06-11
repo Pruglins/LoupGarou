@@ -7,12 +7,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,6 +23,97 @@ public class PartieCMD implements CommandExecutor {
     private final Main plugin;
     public PartieCMD(Main main) {
         this.plugin = main;
+    }
+
+    private int safeParseInt(String value) {
+        if (value == null || value.isEmpty()) {
+            return 0;
+        }
+
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    private int getAmount_Mechant(FileConfiguration config) {
+        String amount_of_wolf = config.getString("partie.nb_total_role.Loup Garou");
+        String amount_of_mechant_loup = config.getString("partie.nb_total_role.Grand Méchant loup");
+        String amount_of_loup_blanc = config.getString("partie.nb_total_role.Loup Garou Blanc");
+        String amount_of_infect = config.getString("partie.nb_total_role.Infect Père des loups");
+        String amount_of_enfant = config.getString("partie.nb_total_role.Enfant sauvage");
+        String amount_of_chien_loup = config.getString("partie.nb_total_role.Chien Loup");
+
+        return safeParseInt(amount_of_wolf)
+                + safeParseInt(amount_of_mechant_loup)
+                + safeParseInt(amount_of_loup_blanc)
+                + safeParseInt(amount_of_infect)
+                + safeParseInt(amount_of_enfant)
+                + safeParseInt(amount_of_chien_loup)
+                ;
+    }
+
+    private int getAmount_Gentils(FileConfiguration config) {
+        return safeParseInt(config.getString("partie.nb_total_role.Villageois")) +
+                safeParseInt(config.getString("partie.nb_total_role.Cupidon")) +
+                safeParseInt(config.getString("partie.nb_total_role.Voyante")) +
+                safeParseInt(config.getString("partie.nb_total_role.Soeurs")) +
+                safeParseInt(config.getString("partie.nb_total_role.Petite fille")) +
+                safeParseInt(config.getString("partie.nb_total_role.Renard")) +
+                safeParseInt(config.getString("partie.nb_total_role.Chevalier à l'épée rouillée")) +
+                safeParseInt(config.getString("partie.nb_total_role.Ancien")) +
+                safeParseInt(config.getString("partie.nb_total_role.Sorcière")) +
+                safeParseInt(config.getString("partie.nb_total_role.Montreur d'ours")) +
+                safeParseInt(config.getString("partie.nb_total_role.Chasseur")) +
+                safeParseInt(config.getString("partie.nb_total_role.Enfant sauvage")) +
+                safeParseInt(config.getString("partie.nb_total_role.Chien Loup")) +
+                safeParseInt(config.getString("partie.nb_total_role.Ange")) +
+                safeParseInt(config.getString("partie.nb_total_role.Joueur de flûte"))
+                ;
+    }
+
+    private void vote_eliminatePossibleLoupGarou() {
+        Inventory inv = Bukkit.createInventory(null, 45, "Vote : Eliminer un joueur");
+
+        int slot = 10;
+
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            ItemStack head_p = new ItemStack(Material.PLAYER_HEAD, 1);
+            SkullMeta head_meta = (SkullMeta) head_p.getItemMeta();
+            head_meta.setDisplayName(p.getName());
+            head_meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            head_meta.setOwningPlayer(Bukkit.getOfflinePlayer(p.getUniqueId()));
+            head_p.setItemMeta(head_meta);
+            inv.setItem(slot, head_p);
+            slot++;
+        }
+
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            p.openInventory(inv);
+        }
+    }
+
+    private boolean managerStart_Game(FileConfiguration config, Player author_player) {
+        List<String> GameCurrent_Players = plugin.getConfig().getStringList("partie.joueurs");
+
+        for (String p_name : GameCurrent_Players) {
+            Player p = Bukkit.getPlayer(p_name);
+            if (p != null) {
+                PotionEffect effect = new PotionEffect(PotionEffectType.BLINDNESS, Integer.MAX_VALUE, 10); // 20ticks -> 1s, 5min -> 20*300
+                p.addPotionEffect(effect);
+            }
+        }
+
+        Bukkit.broadcastMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
+                "Dans cette partie, il peut y avoir au total "
+                + ChatColor.RED + getAmount_Mechant(config) + ChatColor.WHITE + " Loups-Garous, et " + ChatColor.GREEN
+                + getAmount_Gentils(config) + ChatColor.WHITE + " Villageois."
+        );
+
+        vote_eliminatePossibleLoupGarou();
+
+        return true; // Fin de la partie
     }
 
     @Override
@@ -32,8 +125,7 @@ public class PartieCMD implements CommandExecutor {
                 String selection_mode = args[0];
 
                 if (selection_mode.equals("start") || selection_mode.equals("commencer")) {
-                    // Automatique
-                    Bukkit.broadcastMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                    Bukkit.broadcastMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
                             "La partie va commencer !"
                     );
 
@@ -45,54 +137,25 @@ public class PartieCMD implements CommandExecutor {
                             for (Player p : Bukkit.getOnlinePlayers()) {
                                 p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
                             }
-                            Bukkit.broadcastMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
-                                    "La partie commence dans " + ChatColor.GREEN + i
+                            Bukkit.broadcastMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
+                                    "La partie commence dans " + ChatColor.GREEN + i + ChatColor.WHITE + " !"
                             );
-                            if (i == 0) {
+                            if (i == 1) {
                                 this.cancel();
+                                managerStart_Game(configPlugin, player);
                             }
                             i--;
                         }
                     }.runTaskTimer(plugin, 0, 20*1); // 1s -> 20ticks
-
-                    List<String> GameCurrent_Players = plugin.getConfig().getStringList("partie.joueurs");
-                    String amount_of_wolf = configPlugin.getString("partie.nb_total_role.Loup Garou");
-                    System.out.println("\n");
-                    System.out.println(amount_of_wolf);
-                    System.out.println("\n");
-                    for (String p_name : GameCurrent_Players) {
-                        Player p = Bukkit.getPlayer(p_name);
-                        if (p != null) {
-                            PotionEffect effect = new PotionEffect(PotionEffectType.BLINDNESS, Integer.MAX_VALUE, 10); // 20ticks -> 1s, 5min -> 20*300
-                            p.addPotionEffect(effect);
-                        }
-                    }
-
-                    return true;
                 } else if (selection_mode.equals("joueur") || selection_mode.equals("joueurs") || selection_mode.equals("player") || selection_mode.equals("players")) {
-                    if (args.length > 3) {
-                        String mode = args[1];
-                        String possiblePlayer = args[2];
-
-                        if (mode.equals("ajouter") || mode.equals("add")) {
-                            if (managePlayer(possiblePlayer, "add")) {
-                                return true;
-                            }
-                        } else if (mode.equals("retirer") || mode.equals("remove")) {
-                            if (managePlayer(possiblePlayer, "remove")) {
-                                return true;
-                            }
-                        } else if (mode.equals("liste") || mode.equals("list")) {
-                            List<String> listes_players_game = configPlugin.getStringList("partie.joueurs");
-                            player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
-                                    "Voici la liste de tout les joueurs qui participent au jeu : "
-                                    );
-                            for (String name_p : listes_players_game) {
-                                player.sendMessage("- " + ChatColor.YELLOW + Bukkit.getPlayer(name_p).getName() + ChatColor.WHITE);
-                            }
-                            return true;
-                        }
+                    List<String> listes_players_game = configPlugin.getStringList("partie.joueurs");
+                    player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
+                            "Voici la liste de tout les joueurs qui participent au jeu : "
+                    );
+                    for (String name_p : listes_players_game) {
+                        player.sendMessage("- " + ChatColor.YELLOW + Bukkit.getPlayer(name_p).getName() + ChatColor.WHITE);
                     }
+                    return true;
                 } else if (selection_mode.equals("reset") || selection_mode.equals("reinitialise")) {
                     reloadConfig(configPlugin);
                     player.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "]" +
