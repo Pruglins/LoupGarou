@@ -36,10 +36,6 @@ public class PartieCMD implements CommandExecutor {
             return 0;
         }
     }
-
-    private void giveDelay() {
-        new BukkitRunnable() { @Override public void run() { /*Waiting*/} }.runTaskLater(plugin, 20 * 30); // 30s -> 20 * 30
-    }
     private int getAmount_Mechant(FileConfiguration config) {
         String amount_of_wolf = config.getString("partie.nb_total_role.Loup Garou");
         String amount_of_mechant_loup = config.getString("partie.nb_total_role.Grand Méchant loup");
@@ -116,7 +112,7 @@ public class PartieCMD implements CommandExecutor {
             int i = 20;
             @Override
             public void run() {
-                cupidon.setExp(i);
+                cupidon.setLevel(i);
                 if (i == 1) {
                     this.cancel();
                 }
@@ -129,19 +125,24 @@ public class PartieCMD implements CommandExecutor {
         if (config.getInt("partie.nuit") == 1) {
             for (Player p : Bukkit.getOnlinePlayers()) {
                 String role = config.getString("partie.roles_players." + p.getName());
-                if (role.equals("Cupidon")) {
-                    Bukkit.broadcastMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
-                            "Cupidon se réveille !"
-                    );
-                    p.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
-                            "Vous avez 20 secondes pour effectuer votre action : mettre en couple deux personnes, si l'une d'elle meurt l'autre meurt de chagrin également."
-                    );
-                    UI_Cupidon(p);
-                    config.set("partie.current_role", "Cupidon");
+                if (role != null) {
+                    if (role.equals("Cupidon")) {
+                        new BukkitRunnable() {
+                            @Override public void run() {
+                                Bukkit.broadcastMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
+                                        "Cupidon se réveille !"
+                                );
+                                p.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
+                                        "Vous avez 20 secondes pour effectuer votre action : mettre en couple deux personnes, si l'une d'elle meurt l'autre meurt de chagrin également."
+                                );
+                                config.set("partie.current_role", "Cupidon");
+                                plugin.saveConfig();
+                                UI_Cupidon(p);
+
+                            }
+                        }.runTaskLater(plugin, 0); // 0s -> 20 * 0
+                    }
                 }
-                Bukkit.broadcastMessage("DEBUG DELAY: 1");
-                giveDelay();
-                Bukkit.broadcastMessage("DEBUG DELAY: 2");
             }
         }
     }
@@ -227,6 +228,7 @@ public class PartieCMD implements CommandExecutor {
         config.set("partie.roles_players", null);
         config.set("partie.nb_total_role", null);
         config.set("partie.nuit", 1);
+        config.set("partie.current_role", "None");
         config.set("partie.cupidon-1", "None");
         config.set("partie.cupidon-2", "None");
         plugin.saveConfig();
