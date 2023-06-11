@@ -223,6 +223,8 @@ public class PartieCMD implements CommandExecutor {
         config.set("partie.roles_players", null);
         config.set("partie.nb_total_role", null);
         config.set("partie.nuit", 1);
+        config.set("partie.cupidon-1", "None");
+        config.set("partie.cupidon-2", "None");
         plugin.saveConfig();
     }
 
