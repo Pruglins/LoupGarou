@@ -96,7 +96,7 @@ public class PartieCMD implements CommandExecutor {
     }
 
     private void UI_Cupidon(Player cupidon) {
-        Inventory inv = Bukkit.createInventory(null, 9, "Cupidon");
+        Inventory inv = Bukkit.createInventory(null, 45, "Cupidon");
         for (Player p : Bukkit.getOnlinePlayers()) {
             ItemStack head_p = new ItemStack(Material.PLAYER_HEAD, 1);
             SkullMeta head_meta = (SkullMeta) head_p.getItemMeta();
@@ -106,6 +106,17 @@ public class PartieCMD implements CommandExecutor {
             head_p.setItemMeta(head_meta);
             inv.addItem(head_p);
         }
+
+        new BukkitRunnable() {
+            int i = 20;
+            @Override
+            public void run() {
+                if (i == 1) {
+                    cupidon.setExp(i);
+                }
+                i--;
+            }
+        }.runTaskTimer(plugin, 0, 20);
 
         cupidon.openInventory(inv);
     }
