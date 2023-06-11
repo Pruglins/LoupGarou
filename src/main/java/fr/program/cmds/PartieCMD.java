@@ -73,20 +73,6 @@ public class PartieCMD implements CommandExecutor {
                 ;
     }
 
-    private void UI_Cupidon(Player cupidon) {
-        Inventory inv = Bukkit.createInventory(null, 9, "Cupidon");
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            ItemStack head_p = new ItemStack(Material.PLAYER_HEAD, 1);
-            SkullMeta head_meta = (SkullMeta) head_p.getItemMeta();
-            head_meta.setDisplayName(p.getName());
-            head_meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-            head_meta.setOwningPlayer(Bukkit.getOfflinePlayer(p.getUniqueId()));
-            head_p.setItemMeta(head_meta);
-            inv.addItem(head_p);
-        }
-
-        cupidon.openInventory(inv);
-    }
 
     private void vote_eliminatePossibleLoupGarou() {
         Inventory inv = Bukkit.createInventory(null, 45, "Vote : Eliminer un joueur");
@@ -106,6 +92,41 @@ public class PartieCMD implements CommandExecutor {
 
         for (Player p : Bukkit.getOnlinePlayers()) {
             p.openInventory(inv);
+        }
+    }
+
+    private void UI_Cupidon(Player cupidon) {
+        Inventory inv = Bukkit.createInventory(null, 9, "Cupidon");
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            ItemStack head_p = new ItemStack(Material.PLAYER_HEAD, 1);
+            SkullMeta head_meta = (SkullMeta) head_p.getItemMeta();
+            head_meta.setDisplayName(p.getName());
+            head_meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            head_meta.setOwningPlayer(Bukkit.getOfflinePlayer(p.getUniqueId()));
+            head_p.setItemMeta(head_meta);
+            inv.addItem(head_p);
+        }
+
+        cupidon.openInventory(inv);
+    }
+
+    private void startNight(FileConfiguration config) {
+        if (config.getInt("partie.nuit") == 1) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                String role = config.getString("partie.roles_players." + p.getName());
+                if (role.equals("Cupidon")) {
+                    Bukkit.broadcastMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
+                            "Cupidon se réveille !"
+                    );
+                    p.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
+                            "Vous avez 20 secondes pour effectuer votre action : mettre en couple deux personnes, si l'une d'elle meurt l'autre meurt de chagrin également."
+                    );
+                    UI_Cupidon(p);
+                    config.set("partie.current_role", "Cupidon");
+                }
+
+                new BukkitRunnable() { @Override public void run() { /*Waiting*/} }.runTaskLater(plugin, 20 * 30); // 30s -> 20 * 30
+            }
         }
     }
 
@@ -129,25 +150,6 @@ public class PartieCMD implements CommandExecutor {
         startNight(config);
 
         return true; // Fin de la partie
-    }
-
-    private void startNight(FileConfiguration config) {
-        if (config.getInt("partie.nuit") == 1) {
-            for (Player p : Bukkit.getOnlinePlayers()) {
-                String role = config.getString("partie.roles_players." + p.getName());
-                if (role.equals("Cupidon")) {
-                    Bukkit.broadcastMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
-                            "Cupidon se réveille !"
-                    );
-                    p.sendMessage("[" + ChatColor.DARK_RED + "Loup Garou" + ChatColor.WHITE + "] " +
-                            "Vous avez 20 secondes pour effectuer votre action : mettre en couple deux personnes, si l'une d'elle meurt l'autre meurt de chagrin également."
-                    );
-                    UI_Cupidon(p);
-                }
-
-                new BukkitRunnable() { @Override public void run() { /*Waiting*/} }.runTaskLater(plugin, 20 * 30); // 30s -> 20 * 30
-            }
-        }
     }
 
     @Override
